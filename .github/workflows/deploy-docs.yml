@@ -1,0 +1,33 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Swift
+      uses: fwal/setup-swift@v1
+      with:
+        swift-version: '5.5'
+
+    - name: Build and deploy documentation
+      run: |
+        mkdir -p public
+        cp -r docs/Bliss.doccarchive/* public/
+        
+        cd public
+        git init
+        git remote add origin https://github.com/edgar-j-b/Bliss.git
+        git checkout -b gh-pages
+        git add .
+        git commit -m "Deploy documentation"
+        git push --force origin gh-pages
+
