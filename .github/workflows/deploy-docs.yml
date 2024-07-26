@@ -18,24 +18,14 @@ jobs:
       with:
         swift-version: '5.5'
 
-    - name: Build Documentation
+    - name: Generate Documentation
       run: |
-        # Build the documentation here
-        # Assuming it generates docs/Bliss.doccarchive
-        # Convert .doccarchive to HTML (if needed)
-        # You might need to use a tool to convert the .doccarchive to HTML
-        
+        # Generate HTML documentation from .doccarchive
+        docc convert docs/Bliss.doccarchive --output-dir public
+
     - name: Deploy to GitHub Pages
       run: |
-        mkdir -p public
-        cp -r docs/Bliss.doccarchive/* public/
-        
         cd public
-        # Ensure an index.html exists
-        if [ ! -f index.html ]; then
-          echo "<html><body><h1>Documentation</h1></body></html>" > index.html
-        fi
-        
         git init
         git remote add origin https://github.com/edgar-j-b/Bliss.git
         git checkout -b gh-pages
