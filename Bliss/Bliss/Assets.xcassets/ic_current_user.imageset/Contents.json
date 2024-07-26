@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_current_user.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
